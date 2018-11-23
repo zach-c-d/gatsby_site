@@ -54,7 +54,8 @@ const Hello = styled.div`
   }
 `
 const Background = styled.div`
-  position: static;
+  position: fixed;
+  top:0;
   left: 0;  
   width:100vw;
   height: 100vh;

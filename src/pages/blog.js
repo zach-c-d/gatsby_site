@@ -7,7 +7,9 @@ import styled from 'styled-components'
 
 const BlogPage = ({data}) => {
   return(
+    <div>
     <Background>
+    </Background>
       <Layout>
         <h1>Latest Posts</h1>
         {data.allMarkdownRemark.edges.map(post => (
@@ -23,12 +25,14 @@ const BlogPage = ({data}) => {
           </div>
         ))}
       </Layout>
-    </Background>
+    </div>
   );
 }
 
 const Background = styled.div`
-  position: static;
+  position: fixed;
+  z-index: -1;
+  top: 0;
   left: 0;  
   width:100vw;
   height: 100vh;
