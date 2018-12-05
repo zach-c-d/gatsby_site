@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { Link } from 'gatsby';
-import {
-        background_Red,
-        background_Green,
-        background_Yellow
-      } from '../utilities/colors.js'
+// import {
+//         background_Red,
+//         background_Green,
+//         background_Yellow
+//       } from '../utilities/colors.js'
 
 export default class NavigationBar extends Component {
   render(props) {
@@ -37,9 +37,11 @@ const PageButton = styled.div`
 const NavBarContainer = styled.div`
     background: linear-gradient(90deg, rgba(28, 28, 28, 0) -800.5%, #1E1E1E 30%);
     border-radius: 0px 2px 2px 0px;
-    min-width:100px;
     width: 100px;
     height: 100vh;
+    @media screen and (max-width:700px){
+      width: 80px;
+    }
     position: sticky;
     top:0;
     padding-top: ${button_diameter}px;

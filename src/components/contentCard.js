@@ -29,6 +29,6 @@ export const ContentCard = styled.div`
 `
 
 // ContentCard.propTypes = {
-//   children: PropTypes.node.isRequired,
-// }
+    // }
+    //   children: PropTypes.node.isRequired,   
 export default ContentCard;

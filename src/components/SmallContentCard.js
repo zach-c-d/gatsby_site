@@ -2,15 +2,12 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import PropTypes from 'prop-types'
 
-class SmallContentCard extends Component {
-    render(props) {
-        return (
-            <CardContainer>
-                <CardShine></CardShine>
-            </CardContainer>
-        );
-    }
-}
+const SmallContentCard = () => (
+    <CardContainer>
+        <CardShine></CardShine>
+    </CardContainer>
+);
+export default SmallContentCard;
 
 export const CardContainer = styled.div`
     position: fixed;

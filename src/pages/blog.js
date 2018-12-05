@@ -41,20 +41,22 @@ const Background = styled.div`
 
 export const pageQuery = graphql`
   query blogIndexQuery{
-      allMarkdownRemark{
-        edges{
-          node{
-            id
-            frontmatter{
-              path
-              title
-              date
-              author
-            }
+    allMarkdownRemark(
+      filter: {frontmatter: {type: { eq: "blog"}}}
+    ){
+      edges{
+        node{
+          id
+          frontmatter{
+                title
+                date
+                author
+                path
           }
         }
       }
     }
+  } 
 `
 
 export default BlogPage;

@@ -2,35 +2,86 @@ import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'gatsby'
 import Layout from '../components/layout'
-import SmallContentCard from '../components/SmallContentCard.js'
 import { background_Green } from '../utilities/colors.js'
 
 
+// {/* <img alt={post.node.frontmatter.imageAlt} src={post.node.frontmatter.image}></img> */}
 const Projects = ({data}) => {
+  console.log(data);
   return(
     <div>
     <Background>
     </Background>
       <Layout>
-        <h1>Latest Posts</h1>
+        <Header>
+          <h1>Projects</h1>
+        </Header>
+        <FlexBoxWrap>
         {data.allMarkdownRemark.edges.map(post => (
-          <div key={post.node.id}>
+         <Link to={post.node.frontmatter.path}>
+          <ContentCard key={post.node.id}>
+            <img src={post.node.frontmatter.image}/>
             <h3>{post.node.frontmatter.title}</h3>
-            <small>Posted by {post.node.frontmatter.author} on {post.node.frontmatter.date}</small>
-            <br />
-            <br />
-            <Link to={post.node.frontmatter.path}> Read More</Link>
-            <br />
-            <br />
-            <hr />
-          </div>
+            <small>{post.node.frontmatter.date}</small>
+          </ContentCard>
+         </Link>
         ))}
+        </FlexBoxWrap>
       </Layout>
     </div>
   );
 }
 
+const Header = styled.div`
 
+`
+const FlexBoxWrap = styled.div`
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+`
+const ContentCard = styled.div`
+  margin: 20px;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #333;
+  box-shadow: rgba(255,255,255,.25) 0 1px 0,
+              inset rgba(255,255,255,.25) 0 1px 0,
+              inset rgba(0,0,0,.5) 0 0 0,
+              inset rgba(0,0,0,.3) 0 -1.25rem 1.25rem,
+              inset rgba(255,255,255,.1) 0 1.25rem 1.25rem;
+  border: 1px solid #242424;
+  border-radius: 10px;
+  transition: .2s;
+  :hover{
+    box-shadow: rgba(0,0,0,.25) 0 3px 0;
+  }
+  color: white;
+  text-decoration: none;
+  padding: 20px;
+  h3{
+    margin-top: 10px;
+  }
+  img{
+    width: 300px;
+    border-radius: 10px;
+    box-shadow: inset rgba(255,255,255,.25) 0 1px 0,
+              inset rgba(0,0,0,.5) 0 0 0,
+              inset rgba(0,0,0,.3) 0 -1.25rem 1.25rem,
+              inset rgba(255,255,255,.1) 0 1.25rem 1.25rem;
+  }
+  @media screen and (max-width: 700px){
+    padding: 5px;
+    img{
+      width: 200px;
+      border-radius: 5px;
+    }
+  }
+`
 const Background = styled.div`
   position: fixed;
   z-index: -1;
@@ -42,20 +93,24 @@ const Background = styled.div`
 `
 export const pageQuery = graphql`
   query projectIndexQuery{
-    allMarkdownRemark{
+    allMarkdownRemark(
+      filter: {frontmatter: {type: { eq: "project"}}}
+    ){
       edges{
         node{
           id
           frontmatter{
-                path
                 title
                 date
                 author
-              }
-            }
+                path
+                image
+                imageAlt
           }
         }
       }
+    }
+  } 
     
 `
     
